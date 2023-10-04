@@ -63,11 +63,11 @@ router.delete('/by-name/:name', (req,res) => {
     }
 })
 
-router.post('/add/:title/:author/:genre/:Height/:publisher', (req,res) => {
+router.post('/add/:title/:author/:genre/:height/:publisher', (req,res) => {
     let title = req.params.title;
     let author = req.params.author;
     let genre = req.params.genre;
-    let height = req.params.Height;
+    let height = req.params.height;
     let publisher = req.params.publisher;
 
     let data = fs.readFileSync('./data.json')

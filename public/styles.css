@@ -17,7 +17,7 @@ nav {
   text-align: center;
 }
 
-nav ul li{
+nav ul li {
   background-color: #1f1f1f;
   border-radius: 3px;
   display: inline-block;
@@ -152,7 +152,8 @@ pre {
   overflow-y: auto;
   border-radius: 8px;
   background: #1f1f1f !important;
-  margin-left: 50%; transform: translate(-50%);
+  margin-left: 50%;
+  transform: translate(-50%);
 }
 
 code {
@@ -257,11 +258,11 @@ code {
   transition: all 0.4s ease-in-out;
 }
 
-.toggle input:checked+.slider {
-  background-color: #2196F3;
+.toggle input:checked + .slider {
+  background-color: #2196f3;
 }
 
-.toggle input:checked+.slider::before {
+.toggle input:checked + .slider::before {
   transform: translateX(calc(var(--width) - var(--height)));
 }
 
@@ -296,10 +297,49 @@ code {
   transition: all 0.4s ease-in-out;
 }
 
-.toggle input:checked~.labels::after {
+.toggle input:checked ~ .labels::after {
   opacity: 0;
 }
 
-.toggle input:checked~.labels::before {
+.toggle input:checked ~ .labels::before {
   opacity: 1;
+}
+
+/* Input */
+.data span {
+  position: relative;
+  display: inline-block;
+  margin: 30px 10px;
+  background-color: #1f1f1f;
+  border-radius: 3px;
+}
+
+.data span label {
+  padding-left: 5px;
+}
+
+.basic-slide {
+  width: 300px;
+  padding: 10px 10px 15px;
+  font-weight: 400;
+  color: black;
+  background: #efefef;
+  border: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  outline: 0;
+}
+
+.btn {
+  width: 35%;
+  height: 3vh;
+  background-color: #1f1f1f;
+  color: #fff;
+  font-size: large;
+  border: none;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  cursor: pointer;
 }
