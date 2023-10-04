@@ -27,7 +27,7 @@ $('.input').on('input', (e) => {
         $.each(data, function(i, item) {
             let data = item;
             $('#items').append(`
-            <div class="item" style="text-align: center;">
+            <div class="item">
                 <ul>
                     <li>Title <br>${data.Title || "N/A"}</li>
                     <li>Author <br>${data.Author || "N/A"}</li>
