@@ -27,11 +27,11 @@ $('.input').on('input', (e) => {
             $('.data').append(`
             <div class="item">
                 <ul>
-                    <li>Title <br>${data.Title}</li>
-                    <li>Author <br>${data.Author}</li>
-                    <li>Genre <br>${data.Genre}</li>
-                    <li>Height <br>${data.Height}</li>
-                    <li>Publisher <br>${data.Publisher}</li>
+                    <li>Title <br>${data.Title || "N/A"}</li>
+                    <li>Author <br>${data.Author || "N/A"}</li>
+                    <li>Genre <br>${data.Genre || "N/A"}</li>
+                    <li>Height <br>${data.Height || "N/A"}</li>
+                    <li>Publisher <br>${data.Publisher || "N/A"}</li>
                     <button id="delete" value="${data.Title}" onclick="deleteBook(this);">Delete</button>
                 </ul>
             </div>
