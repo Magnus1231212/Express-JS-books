@@ -14,6 +14,21 @@ router.get('/all', (req, res) => {
     res.send(data);
 })
 
+router.get('/search/:type/:name', (req, res) => {
+    let name = req.params.name;
+    let type = req.params.type;
+    let data = fs.readFileSync('./data.json')
+    data = data.toString()
+    data = JSON.parse(data)
+    let results;
+    try {
+        results = data.filter(d => d[type].includes(name))
+    } catch (Error) {
+        res.status(500).send('Error filtering data');
+    }
+    res.status(200).send(results);
+})
+
 router.get('/by-name/:name', (req, res) => {
     let found = false;
     let name = req.params.name;

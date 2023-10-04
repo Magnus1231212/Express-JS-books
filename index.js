@@ -5,10 +5,7 @@ const app = express()
 
 const port = 3000;
 
-app.get('/', (res, req) => {
-    req.send('Api is working')
-})
-
+app.use(express.static('public'));
 app.use('/books', router)
 
 app.listen(port, function() {
