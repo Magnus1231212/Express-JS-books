@@ -19,6 +19,7 @@ $(".dropdown ul li").click(function(){
 $('.input').on('input', (e) => {
     if(e.target.value == '') {
         $('code').html('');
+        $('#items').empty()
         return;
     }
     setCode(type, e.target.value).then((data) => {
@@ -56,7 +57,11 @@ $('#toggleCheckbox').change(function() {
 });
 
 async function setCode(searchtype, searchvalue) {
+    try {
     const response = await fetch(`${api}books/search/${searchtype}/${searchvalue}`);
     const books = await response.json();
     return books;
+    } catch (error) {
+        notify('error', 'Error fetching books');
+    }
 }
