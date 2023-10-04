@@ -29,36 +29,6 @@ router.get('/search/:type/:name', (req, res) => {
     res.status(200).send(results);
 })
 
-router.get('/by-name/:name', (req, res) => {
-    let found = false;
-    let name = req.params.name;
-
-    let data = fs.readFileSync('./data.json')
-    data = data.toString()
-    data = JSON.parse(data)
-
-    for(const i of data) {
-        let title = i.Title.toLowerCase()
-        name = name.toLowerCase()
-
-        if(title.includes(' ')) {
-            title = title.replaceAll(' ', '_')
-        }
-        if(name.includes(' ')) {
-            name = name.replaceAll(' ', '_')
-        }
-
-        if(title == name) {
-            res.send(i)
-            found = true;
-        }
-    }
-
-    if(!found) {
-        res.send('No Entry Found')
-    }
-})
-
 router.delete('/by-name/:name', (req,res) => {
     let found = false;
     let name = req.params.name;
@@ -81,12 +51,36 @@ router.delete('/by-name/:name', (req,res) => {
         if(title == name) {
             data.splice(i, 1)
             fs.writeFileSync('./data.json', JSON.stringify(data))      
-            res.send('Deleted Entry')
+            res.status(200).send('Deleted Entry')
+            console.log('Deleted Entry');
             found = true;
         }
     }
 
     if(!found) {
-        res.send('No Entry Found')
+        res.status(500).send('No Entry Found')
+        console.log('No Entry Found')
     }
+})
+
+router.post('/add/:title/:author/:genre/:Height/:publisher', (req,res) => {
+    let title = req.params.title;
+    let author = req.params.author;
+    let genre = req.params.genre;
+    let height = req.params.Height;
+    let publisher = req.params.publisher;
+
+    let data = fs.readFileSync('./data.json')
+    data = data.toString()
+    data = JSON.parse(data)
+
+    data.push({
+		"Title": title,
+		"Author": author,
+		"Genre": genre,
+		"Height": height,
+		"Publisher": publisher
+	})
+    
+    fs.writeFileSync('./data.json', JSON.stringify(data))
 })

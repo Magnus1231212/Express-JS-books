@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search for books</title>
+    <title>Delete books</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -17,9 +17,9 @@
             </ul>
         </nav>
     </header>
-    <div class="wrapper">
-        <h1 class="title">Search for books</h1>
-        <div class="search_box">
+    <div class="wrapper" style="width: 60%;">
+        <h1 class="title">Search for books to delete</h1>
+        <div class="search_box" style="margin-left: 50%; margin-top: 5%; transform: translate(-50%, -50%);">
             <div class="dropdown" id="dropdown">
                 <div class="default_option">Title</div>  
                 <ul>
@@ -35,13 +35,9 @@
               <i class="fas fa-search"></i>
           </div>
         </div>
-        <div class="data">
-            <pre>
-                <code>
-                </code>
-            </pre>
+        <div class="data" id="data">
         </div>
     </div>
-    <script src="index.js"></script>
+    <script src="delete.js"></script>
 </body>
 </html>
