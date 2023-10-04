@@ -6,6 +6,7 @@
     <title>Search for books</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
@@ -17,9 +18,9 @@
             </ul>
         </nav>
     </header>
-    <div class="wrapper">
+    <div class="wrapper" style="width: 60%;">
         <h1 class="title">Search for books</h1>
-        <div class="search_box">
+        <div class="search_box" style="margin-left: 50%; margin-top: 5%; transform: translate(-50%, -50%);">
             <div class="dropdown" id="dropdown">
                 <div class="default_option">Title</div>  
                 <ul>
@@ -35,13 +36,23 @@
               <i class="fas fa-search"></i>
           </div>
         </div>
-        <div class="data">
-            <pre>
+        <div class="typeToggle">
+            <label class="toggle">
+                <input type="checkbox" id="toggleCheckbox" checked>
+                <span class="slider"></span>
+                <span class="labels" data-on="List" data-off="JSON"></span>
+            </label>
+        </div>
+        <div class="data" id="data">
+            <div id="items">
+            </div>
+            <pre id="json" style="display: none;">
                 <code>
                 </code>
             </pre>
         </div>
     </div>
+    <script src="notify.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

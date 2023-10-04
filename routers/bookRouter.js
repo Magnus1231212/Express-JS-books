@@ -74,13 +74,20 @@ router.post('/add/:title/:author/:genre/:Height/:publisher', (req,res) => {
     data = data.toString()
     data = JSON.parse(data)
 
-    data.push({
-		"Title": title,
-		"Author": author,
-		"Genre": genre,
-		"Height": height,
-		"Publisher": publisher
-	})
-    
-    fs.writeFileSync('./data.json', JSON.stringify(data))
+    try {
+        data.push({
+            "Title": title,
+            "Author": author,
+            "Genre": genre,
+            "Height": height,
+            "Publisher": publisher
+        })
+
+        fs.writeFileSync('./data.json', JSON.stringify(data))
+        res.status(200).send('Added Entry')
+        console.log('Added Entry')
+    } catch (Error) {
+        res.status(500).send('Error adding entry')
+        console.log('Error adding entry')
+    }
 })

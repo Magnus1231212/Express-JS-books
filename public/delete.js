@@ -41,14 +41,19 @@ $('.input').on('input', (e) => {
 });
 
 async function deleteBook(book) { 
-    const response = await fetch(`${api}books/by-name/${book.value}`, {
+    fetch(`${api}books/by-name/${book.value}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         }
+    }).then( (response) => {
+        if (response.ok) {
+            notify('success', 'Book deleted successfully');
+            $(book).closest('div').remove();
+        } else {
+            notify('error', 'Error deleting book');
+        }
     });
-    const books = await response.text();
-    console.log(books);
 }
 
 async function setCode(searchtype, searchvalue) {
