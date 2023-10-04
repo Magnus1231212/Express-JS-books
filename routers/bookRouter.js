@@ -22,7 +22,7 @@ router.get('/search/:type/:name', (req, res) => {
     data = JSON.parse(data)
     let results;
     try {
-        results = data.filter(d => d[type].includes(name))
+        results = data.filter(d => d[type].toLowerCase().includes(name.toLowerCase()))
     } catch (Error) {
         res.status(500).send('Error filtering data');
     }
