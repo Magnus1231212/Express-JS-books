@@ -1,7 +1,5 @@
 # Express JS books
 
----
-
 ## Search for books
 
 ![search](preview/search.png)
