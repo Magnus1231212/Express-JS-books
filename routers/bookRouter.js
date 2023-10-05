@@ -53,14 +53,14 @@ router.delete("/by-name/:name", (req, res) => {
     if (title == name) {
       data.splice(i, 1);
       fs.writeFileSync("./data.json", JSON.stringify(data));
-      res.status(200).send("Deleted Entry");
+      res.status(200).send({ msg: "Book deleted successfully" });
       console.log("Deleted Entry");
       found = true;
     }
   }
 
   if (!found) {
-    res.status(500).send("No Entry Found");
+    res.status(500).send({ msg: "Error deleting book" });
     console.log("No Entry Found");
   }
 });
@@ -76,6 +76,13 @@ router.post("/add/:title/:author/:genre/:height/:publisher", (req, res) => {
   data = data.toString();
   data = JSON.parse(data);
 
+  data.forEach((book) => {
+    if (book.Title.toLowerCase() == title.toLowerCase()) {
+      res.status(500).send({ msg: "Book already exists" });
+      console.log("Book already exists");
+    }
+  });
+
   try {
     data.push({
       Title: title,
@@ -86,10 +93,10 @@ router.post("/add/:title/:author/:genre/:height/:publisher", (req, res) => {
     });
 
     fs.writeFileSync("./data.json", JSON.stringify(data));
-    res.status(200).send("Added Entry");
+    res.status(200).send({ msg: "Book added successfully" });
     console.log("Added Entry");
   } catch (Error) {
-    res.status(500).send("Error adding entry");
+    res.status(500).send({ msg: "Error adding book" });
     console.log("Error adding entry");
   }
 });

@@ -59,9 +59,13 @@ async function deleteBook(book) {
 }
 
 async function setCode(searchtype, searchvalue) {
-  const response = await fetch(
-    `${api}books/search/${searchtype}/${searchvalue}`
-  );
-  const books = await response.json();
-  return books;
+  try {
+    const response = await fetch(
+      `${api}books/search/${searchtype}/${searchvalue}`
+    );
+    const books = await response.json();
+    return books;
+  } catch (error) {
+    notify("error", "Error fetching books");
+  }
 }
