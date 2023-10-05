@@ -5,6 +5,7 @@ async function notify(icon, title) {
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
+    background: "#1f1f1f",
     didOpen: (toast) => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
       toast.addEventListener("mouseleave", Swal.resumeTimer);
