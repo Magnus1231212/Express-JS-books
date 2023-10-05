@@ -1,33 +1,33 @@
-let api = "http://localhost:3000/"
+let api = "http://localhost:3000/";
 let type = "Title";
 let display = "list";
 
-$("#dropdown").click(function(){
-    if($(".dropdown ul").hasClass("active")) {
-        $(".dropdown ul").removeClass("active");
-    } else {
-        $(".dropdown ul").addClass("active");
-    }
-});
-  
-$(".dropdown ul li").click(function(){
-    var text = $(this).text();
-    $(".default_option").text(text);
-    type = text;
+$("#dropdown").click(function () {
+  if ($(".dropdown ul").hasClass("active")) {
+    $(".dropdown ul").removeClass("active");
+  } else {
+    $(".dropdown ul").addClass("active");
+  }
 });
 
-$('.input').on('input', (e) => {
-    if(e.target.value == '') {
-        $('code').html('');
-        $('#items').empty()
-        return;
-    }
-    setCode(type, e.target.value).then((data) => {
-        $('code').html("\n" + JSON.stringify(data, null, '\t'));
-        $('#items').empty()
-        $.each(data, function(i, item) {
-            let data = item;
-            $('#items').append(`
+$(".dropdown ul li").click(function () {
+  var text = $(this).text();
+  $(".default_option").text(text);
+  type = text;
+});
+
+$(".input").on("input", (e) => {
+  if (e.target.value == "") {
+    $("code").html("");
+    $("#items").empty();
+    return;
+  }
+  setCode(type, e.target.value).then((data) => {
+    $("code").html("\n" + JSON.stringify(data, null, "\t"));
+    $("#items").empty();
+    $.each(data, function (i, item) {
+      let data = item;
+      $("#items").append(`
             <div class="item">
                 <ul>
                     <li>Title <br>${data.Title || "N/A"}</li>
@@ -38,30 +38,32 @@ $('.input').on('input', (e) => {
                 </ul>
             </div>
             `);
-        });
-        console.log(JSON.stringify(data, null, '\t'));
     });
+    console.log(JSON.stringify(data, null, "\t"));
+  });
 });
 
-$('#toggleCheckbox').change(function() {
-    console.log(this.checked)
-    if(this.checked) {
-        $('#json').css('display', 'none');
-        $('#items').css('display', 'block');
-        display = "list";
-    } else {
-        $('#json').css('display', 'block');
-        $('#items').css('display', 'none');
-        display = "json";
-    }
+$("#toggleCheckbox").change(function () {
+  console.log(this.checked);
+  if (this.checked) {
+    $("#json").css("display", "none");
+    $("#items").css("display", "block");
+    display = "list";
+  } else {
+    $("#json").css("display", "block");
+    $("#items").css("display", "none");
+    display = "json";
+  }
 });
 
 async function setCode(searchtype, searchvalue) {
-    try {
-    const response = await fetch(`${api}books/search/${searchtype}/${searchvalue}`);
+  try {
+    const response = await fetch(
+      `${api}books/search/${searchtype}/${searchvalue}`
+    );
     const books = await response.json();
     return books;
-    } catch (error) {
-        notify('error', 'Error fetching books');
-    }
+  } catch (error) {
+    notify("error", "Error fetching books");
+  }
 }
