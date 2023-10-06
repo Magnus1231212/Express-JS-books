@@ -1,13 +1,19 @@
-# Express JS books
+# Express JS Books App
 
-## Search for books
+## Preview
+
+### Search for Books with List
 
 ![search](preview/search.png)
 
-## Add a book
+### Search for Books with JSON
+
+![search json](preview/search_json.png)
+
+### Add a Book
 
 ![add](preview/add.png)
 
-## Search for books to delete
+### Search for Books to Delete
 
 ![delete](preview/delete.png)
